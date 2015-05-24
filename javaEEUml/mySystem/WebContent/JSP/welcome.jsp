@@ -6,12 +6,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Welcome page</title>
 </head>
+<style>
+	body{
+		background-image: url(../welcome.jpg);
+        background-color: #393;
+	}
+</style>
 <body>
 <%
 	String transmessage = (String)request.getAttribute("transmessage");
 %>
 <h1>
-	<%=transmessage %>
+	<%
+		if(transmessage != null){
+			out.print(transmessage + "<br />");
+			request.setAttribute("transmessage", null); 
+		}
+		out.print("5秒之后跳转到主界面");
+		response.setHeader("refresh", "5; url=/mySystem/");
+	%>
 </h1>
 </body>
 </html>

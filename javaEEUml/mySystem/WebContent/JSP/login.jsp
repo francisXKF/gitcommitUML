@@ -7,7 +7,16 @@
 <title>LOGIN</title>
 </head>
 <body>
+<%
+	String transmessage = (String)request.getAttribute("transmessage");
+%>
 <div align="center">
+	<%
+		if(transmessage != null){
+			out.print(transmessage + "<br />");
+			request.setAttribute("transmessage", null); 
+		}
+	%>
 	<form action="/mySystem/login-judge" method="post">
 		schoolID: <input type="text" name="schoolID" value="" /><br/>
 		UserName: <input type="text" name="username" value="" /><br/>

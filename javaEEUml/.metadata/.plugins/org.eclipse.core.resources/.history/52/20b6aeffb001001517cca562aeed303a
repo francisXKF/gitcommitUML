@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Index</title>
+</head>
+<body>
+<a href="/mySystem/LOGIN/login.jsp">login</a>
+<a href="#">logon</a>
+</body>
+</html>

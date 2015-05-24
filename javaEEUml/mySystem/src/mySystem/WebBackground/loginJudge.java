@@ -5,6 +5,7 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
+import javax.websocket.Session;
 
 import java.util.*;
 import java.sql.*;
@@ -33,6 +34,8 @@ public class loginJudge extends HttpServlet{
 		String password = request.getParameter("password");
 		String transmessage = "";
 		
+		HttpSession session = request.getSession();
+		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -50,6 +53,7 @@ public class loginJudge extends HttpServlet{
 	      
 	      if(resultSet != null && resultSet.next()){
 	    	  transmessage = "Welcome " + resultSet.getString("name") + " visit";
+	    	  session.setAttribute("nowuser", resultSet.getString("name"));
 	      }
 	      else{
 	    	  transmessage = "Not hava the user!";
@@ -57,7 +61,8 @@ public class loginJudge extends HttpServlet{
 	      connection.close();
 	      request.setAttribute("transmessage", transmessage);
 	      request.getRequestDispatcher("/JSP/welcome.jsp").forward(request, response);
-	    } catch (SQLException sqle) {
+	    } 
+	    catch (SQLException sqle) {
 	      sqle.printStackTrace();
 	    }  
 	}
